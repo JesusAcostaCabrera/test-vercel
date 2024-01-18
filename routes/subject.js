@@ -36,7 +36,7 @@ router.get("/", async (req, res, next) => {
 });
 
 router.post("/", async (req, res, next) => {
-  const newSubject = await request.json();
+  const newSubject = await req.json();
   if (subjects.find((subject) => subject.code === newSubject.code)) {
     return res.json(
       { error: "Subject already exists" },
@@ -48,7 +48,7 @@ router.post("/", async (req, res, next) => {
 });
 
 router.delete('/', async (req, res, next) => {
-  const { code } = await request.json();
+  const { code } = await req.json();
   const index = subjects.findIndex((subject) => subject.code === code);
   if (index !== -1) {
     const deletedSubject = subjects.splice(index, 1)[0];
