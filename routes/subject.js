@@ -1,9 +1,38 @@
 const express = require("express");
 const router = express.Router();
 
+const subjects = [
+  {
+    code: "MATH-101",
+    name: "Mathematics",
+    description: "Mathematics",
+    credits: 3,
+    created_at: new Date(),
+    updated_at: new Date(),
+    teacher: "John Doe",
+  },
+  {
+    code: "PHYS-101",
+    name: "Physics",
+    description: "Physics",
+    credits: 4,
+    created_at: new Date(),
+    updated_at: new Date(),
+    teacher: "Jane Doe",
+  },
+  {
+    code: "CHEM-101",
+    name: "Chemistry",
+    description: "Chemistry",
+    credits: 4,
+    created_at: new Date(),
+    updated_at: new Date(),
+    teacher: "John Doe",
+  },
+];
+
 router.get("/", async (req, res, next) => {
-  const js = metodo.getSubjects()
-  return res.status(200).json(js);
+  return res.status(200).json(subjects);
 });
 
 module.exports = router;
