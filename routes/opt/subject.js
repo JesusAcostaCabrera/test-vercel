@@ -28,6 +28,6 @@ const subjects = [
     },
   ];
   
-  function getSubjects(res) {
+  function getSubjects() {
     return subjects;
   }
