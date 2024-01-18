@@ -35,4 +35,27 @@ router.get("/", async (req, res, next) => {
   return res.status(200).json(subjects);
 });
 
+router.post("/", async (req, res, next) => {
+  const newSubject = await request.json();
+  if (subjects.find((subject) => subject.code === newSubject.code)) {
+    return res.json(
+      { error: "Subject already exists" },
+      { status: 400 }
+    );
+  }
+  subjects.push(newSubject);
+  return res.json(newSubject);
+});
+
+router.delete('/', async (req, res, next) => {
+  const { code } = await request.json();
+  const index = subjects.findIndex((subject) => subject.code === code);
+  if (index !== -1) {
+    const deletedSubject = subjects.splice(index, 1)[0];
+    return res.json(deletedSubject);
+  } else {
+    return res.json({ error: "Subject not found" }, { status: 404 });
+  }
+});
+
 module.exports = router;
